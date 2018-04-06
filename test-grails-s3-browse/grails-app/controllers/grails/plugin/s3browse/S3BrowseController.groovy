@@ -2,15 +2,20 @@ package grails.plugin.s3browse
 
 import com.amazonaws.services.s3.model.ObjectListing
 import com.amazonaws.services.s3.model.S3Object
+import grails.config.Config
 import grails.converters.JSON
 import grails.core.GrailsApplication
+import grails.core.support.GrailsConfigurationAware
 import org.apache.commons.io.IOUtils
 import org.springframework.http.HttpStatus
 import org.springframework.web.multipart.MultipartFile
 
-class S3BrowseController {
+class S3BrowseController implements GrailsConfigurationAware {
     S3BrowseService s3BrowseService
     GrailsApplication grailsApplication
+
+    boolean deleteAllowed = false
+    boolean insertAllowed = false
 
     def index() {
         list()
@@ -114,6 +119,22 @@ class S3BrowseController {
     }
 
     def upload() {
+        if (!isInsertAllowed()) {
+            flash.message = "object insert is not allowed"
+            withFormat {
+                json { render status: HttpStatus.BAD_REQUEST }
+                '*'  { redirect action: 'list',
+                        params: [
+                                bucketName: params.bucketName,
+                                maxKeys: params.maxKeys,
+                                prefix: params.prefix,
+                                marker: params.marker
+                        ]
+                }
+            }
+            return
+        }
+
         MultipartFile f = request.getFile('s3File')
         if (f.empty) {
             flash.message = 'file cannot be empty'
@@ -188,23 +209,23 @@ class S3BrowseController {
         withFormat {
             json { render result as JSON }
             '*'  { redirect action: 'list',
-                            params: params
-//                            params: [
-//                                    bucketName: params.bucketName,
-//                                    maxKeys: params.maxKeys,
-//                                    prefix: params.prefix,
-//                                    marker: params.marker
-//                            ]
+                            params: [
+                                    bucketName: params.bucketName,
+                                    maxKeys: params.maxKeys,
+                                    prefix: params.prefix,
+                                    marker: params.marker
+                            ]
             }
         }
     }
 
-    private boolean isDeleteAllowed() {
-        s3BrowseService.isDeleteAllowed()
-    }
+    @Override
+    void setConfiguration(Config co) {
+        this.deleteAllowed = co.getProperty('s3Browse.deleteAllowed', Boolean, false)
+        log.info "set deleteAllowed = ${this.deleteAllowed}"
 
-    private boolean isInsertAllowed() {
-        s3BrowseService.isInsertAllowed()
+        this.insertAllowed = co.getProperty('s3Browse.insertAllowed', String)
+        log.info "set insertAllowed = ${this.insertAllowed}"
     }
 
 }

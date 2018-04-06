@@ -31,9 +31,6 @@ class S3BrowseService implements InitializingBean {
 
     String bucketName
 
-    boolean deleteAllowed = false
-    boolean insertAllowed = false
-
     /**
      *
      * @param params map of
@@ -145,18 +142,6 @@ class S3BrowseService implements InitializingBean {
         } else {
             throw new RuntimeException("bucketName not set, it must be provided")
         }
-
-        if (grailsApplication.config.s3Browse?.deleteAllowed) {
-            this.deleteAllowed = Boolean.parseBoolean(grailsApplication.config.s3Browse.deleteAllowed.toString())
-        }
-        log.info "set deleteAllowed = ${this.deleteAllowed}"
-
-        if (grailsApplication.config.s3Browse?.insertAllowed) {
-            this.insertAllowed = Boolean.parseBoolean(grailsApplication.config.s3Browse.insertAllowed.toString())
-        }
-        log.info "set insertAllowed = ${this.insertAllowed}"
-
-
     }
 
 
