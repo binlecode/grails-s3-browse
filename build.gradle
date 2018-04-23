@@ -55,10 +55,7 @@ dependencies {
     testRuntime "net.sourceforge.htmlunit:htmlunit:2.18"
     ///////
     compile("org.springframework.boot:spring-boot-devtools")
-    compile project(':grails-s3-browse')
     compile group: 'commons-io', name: 'commons-io', version: '2.6'
-
-
     compile 'org.grails.plugins:aws-sdk-s3:2.1.5'  // 2.1.x is for Grails 3.2.x
 
 }
