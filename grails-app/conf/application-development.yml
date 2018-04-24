@@ -1,6 +1,8 @@
 
 
-
+# Spring Actuator Endpoints are Disabled by Default
+endpoints:
+    enabled: true
 
 grails:
     controllers:
@@ -23,6 +25,7 @@ spring:
 # application specific settings
 s3Browse:
     bucketName: dda-de-dev
-    deleteAllowed: true  # default to false for safety
+    deleteAllowed: false  # default to false for read-only safety
+    insertAllowed: false  # default to false for read-only safety
 
 
