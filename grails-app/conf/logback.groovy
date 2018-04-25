@@ -50,7 +50,10 @@ logger('grails.app.jobs', DEBUG, loggerList, false)
 logger('grails.app.domain', DEBUG, loggerList, false)
 logger('grails.app.taglibs', DEBUG, loggerList, false)
 logger('grails.app.init.test.grails.s3browse', DEBUG, loggerList, false)
-//logger('grails.app.controllers.com.construction.de.prp.audit.AuditInterceptor', TRACE, loggerList, false)
+logger('grails.app.controllers.test.grails.s3browse.AccessAuditInterceptor', TRACE, loggerList, false)
+
+logger('test.grails.s3browse', DEBUG, loggerList, false)
+logger('grails.plugin.s3browse', DEBUG, loggerList, false)
 
 // hibernate SQL and bind variable tracking
 //logger('org.hibernate.SQL', DEBUG, ['STDOUT', 'ROLLING_SQL'], false)    // show sql statements
@@ -60,7 +63,4 @@ logger('grails.app.init.test.grails.s3browse', DEBUG, loggerList, false)
 logger('org.apache.http.headers', INFO, loggerList, false)
 //    logger('org.apache.http.wire', DEBUG, loggerList, false)
 
-logger('grails.app.init.grails.plugin.s3browse.BootStrap', DEBUG, loggerList, false)
-logger('grails.plugin.s3browse', DEBUG, loggerList, false)
-logger('test.grails.s3browse', DEBUG, loggerList, false)
 

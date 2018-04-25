@@ -55,8 +55,14 @@ dependencies {
     testRuntime "net.sourceforge.htmlunit:htmlunit:2.18"
     ///////
     compile("org.springframework.boot:spring-boot-devtools")
+    runtime 'org.grails.plugins:grails-console:2.0.8'  // runtime web console
+//    compile 'org.grails.plugins:grails-melody-plugin:1.60.1'   // runtime jvm monitoring
     compile group: 'commons-io', name: 'commons-io', version: '2.6'
     compile 'org.grails.plugins:aws-sdk-s3:2.1.5'  // 2.1.x is for Grails 3.2.x
+    //////
+    compile 'org.grails.plugins:spring-security-core:3.1.2'
+    compile "org.grails.plugins:mongodb:6.0.12"  // 6.0.x is for Grails 3.2.x and below
+
 
 }
 

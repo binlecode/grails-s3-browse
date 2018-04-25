@@ -14,7 +14,13 @@ spring:
         multipart:
             max-file-size: 10Mb
 
-# config AWS SDK in external config file
+# MongoDB
+---
+grails:
+    mongodb:
+        url: "mongodb://localhost:27017/s3browse"
+
+# AWS SDK
 #---
 #grails:
 #    plugin:

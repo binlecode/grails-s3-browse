@@ -81,9 +81,13 @@ grails:
                 scriptlets: html
                 taglib: none
                 staticparts: none
+
+# actuator config
 endpoints:
     jmx:
         unique-names: true
+management:
+    context-path: '/actuator'   # url mapping to /actuator/{id} for all actuator endpoints
 
 ---
 hibernate:
@@ -131,3 +135,18 @@ environments:
                 testOnReturn: false
                 jdbcInterceptors: ConnectionState
                 defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
+
+# config MongoDB in env specific config file
+#---
+#grails:
+#    mongodb:
+#        url: "mongodb://localhost:27017/s3browse"
+
+# config AWS SDK in env specific config file
+#---
+#grails:
+#    plugin:
+#        awssdk:
+#            accessKey:
+#            secretKey:
+
