@@ -5,7 +5,7 @@
 # grails-logtime
 Grails sample application for simple S3 file browse and management.
 
-[![Build Status](https://travis-ci.org/binlecode/grails-logtime.svg?branch=dev-g31)](https://travis-ci.org/binlecode/grails-logtime)
+[![Build Status](https://travis-ci.org/binlecode/grails-s3-browse.svg?branch=master)](https://travis-ci.org/binlecode/grails-s3-browse)
  
 ## INTRODUCTION
 
